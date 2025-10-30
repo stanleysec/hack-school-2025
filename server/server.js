@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require('mongoose');
 const config = require("./config/server");
 const router = require("./routes/router");
 
@@ -12,6 +13,11 @@ server.use("/api", router);
 
 // TODO
 // SETUP ACTIVITY: Put the code to connect to MongoDB below!
+console.log(config.DB_URL)
+mongoose.connect(config.DB_URL)
+.then (() => console. log('Connected to MongoDB'))
+.catch ((err) => console.error ('Error connecting to MongoDB: ', err));
+
 
 // END SETUP ACTIVITY
 server.listen(config.PORT, () => {
